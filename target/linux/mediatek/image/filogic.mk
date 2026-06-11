@@ -2109,12 +2109,13 @@ TARGET_DEVICES += keenetic_kn-1812
 define Device/keenetic_kn-3411-common
   DEVICE_MODEL := Buddy 6
   DEVICE_DTS_DIR := ../dts
-  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware \
+	nand-utils kmod-mtdtests
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
   PAGESIZE := 2048
   KERNEL_SIZE := 6144k
-  IMAGE_SIZE := 108544k
+  IMAGE_SIZE := 53248k
   KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb | \
 	append-squashfs4-fakeroot
   IMAGES += factory.bin

@@ -63,7 +63,8 @@
 
 	virtual_flash {
 		compatible = "mtd-concat";
-		devices = <&firmware1 &firmware2>;
+		/* TEST BUILD: firmware2 left out of the concat for raw NAND tests */
+		devices = <&firmware1>;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -140,9 +141,7 @@
 		spi-tx-buswidth = <4>;
 		spi-rx-buswidth = <4>;
 
-		mediatek,nmbm;
-		mediatek,bmt-max-ratio = <1>;
-		mediatek,bmt-max-reserved-blocks = <64>;
+		/* TEST BUILD: nmbm disabled so tests see the raw chip */
 
 		partitions {
 			compatible = "fixed-partitions";
