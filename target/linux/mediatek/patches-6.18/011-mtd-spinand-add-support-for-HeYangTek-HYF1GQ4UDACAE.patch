@@ -34,7 +34,7 @@ Signed-off-by: Aleksei Sviridkin <f@lex.la>
  	&paragon_spinand_manufacturer,
 --- /dev/null
 +++ b/drivers/mtd/nand/spi/heyangtek.c
-@@ -0,0 +1,129 @@
+@@ -0,0 +1,132 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Authors:
@@ -114,6 +114,9 @@ Signed-off-by: Aleksei Sviridkin <f@lex.la>
 +static int hyf1gq4_ecc_get_status(struct spinand_device *spinand, u8 status)
 +{
 +	struct nand_device *nand = spinand_to_nand(spinand);
++
++	pr_info("heyangtek: ECC status raw=0x%02x masked=0x%02x\n",
++		status, (u8)(status & STATUS_ECC_MASK));
 +
 +	switch (status & STATUS_ECC_MASK) {
 +	case STATUS_ECC_NO_BITFLIPS:
